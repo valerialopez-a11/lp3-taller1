@@ -124,7 +124,21 @@ Cuerpo de la solicitud (campos opcionales):
 DELETE /api/videos/{id}
 ```
 
-## Sugerencias de Mejora
+## Desarrollo del Taller
+
+1. Ajustar este `README.md` con los datos del Estudiante
+
+2. Realizar un `commit` por cada ajuste realizando, deben buscar los comentarios `# TODO:`
+
+3. Completar el archivo `app.py`
+
+4. Completar el archivo `resources/video.py`
+
+5. Elaborar un documento con las pruebas realizar para cada método del API REST.
+
+6. Implementar una (1) de las sugerencias que se presentan a continuación.
+
+### Sugerencias de Mejora
 
 1. **Autenticación y autorización**:
    - Implementar JWT para autenticar usuarios
