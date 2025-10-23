@@ -59,8 +59,10 @@ class Video(Resource):
         Returns:
             VideoModel: El video solicitado
         """
-        # TODO
-        pass
+        video = VideoModel(id=video_id, **video_put_args.parse_args())
+        db.sesion.add(video)
+        db.sesion.commit()
+        return abort_if_video_doesnt_exist(video_id)
     
     @marshal_with(resource_fields)
     def put(self, video_id):
@@ -73,8 +75,14 @@ class Video(Resource):
         Returns:
             VideoModel: El video creado
         """
-        # TODO
-        pass
+        video = abort_if_video_doesnt_exist(video_id)
+        args = video_update_args.parse_args()
+        for key, value in args.items():
+            if value is not None:
+                setattr(video, key, value)
+        db.session.commit()
+        return video
+
     
     @marshal_with(resource_fields)
     def patch(self, video_id):
@@ -87,9 +95,12 @@ class Video(Resource):
         Returns:
             VideoModel: El video actualizado
         """
-        # TODO
+        video = abort_if_video_doesnt_exist(video_id)
+        db.session.delete(video)
+        db.session.commit()
+        return '', 204
         pass
-    
+
     def delete(self, video_id):
         """
         Elimina un video existente
